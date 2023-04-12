@@ -2,20 +2,40 @@ from django.shortcuts import render
 
 
 def index(request):
-    return render(request, 'index.html')
+    title = 'Main'
+    context = {
+        'title': title,
+    }
+    return render(request, 'index.html', context)
 
 
 def contacts(request):
-    return render(request, 'contacts.html')
+    title = 'Contacts'
+    context = {
+        'title': title,
+    }
+    return render(request, 'contacts.html', context)
 
 
 def products(request):
-    return render(request, 'products.html')
+    title = 'Products | Catalogue'
+    context = {
+        'title': title,
+    }
+    return render(request, 'products.html', context)
 
 
 def about(request):
-    return render(request, 'about.html')
+    title = 'About Us'
+    context = {
+        'title': title,
+    }
+    return render(request, 'about.html', context)
 
 
 def product(request):
-    return render(request, 'product.html')
+    title = 'Product | Detail'
+    context = {
+        'title': title,
+    }
+    return render(request, 'product.html', context)

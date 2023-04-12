@@ -8,7 +8,7 @@ def products(request):
         {'href': 'products_all', 'name': 'all'},
         {'href': 'products_galaxies', 'name': 'galaxies'},
         {'href': 'products_stars', 'name': 'stars'},
-        {'href': 'products_spaceships', 'name': 'spaceships'},
+        {'href': 'products_spacecrafts', 'name': 'spacecrafts'},
         {'href': 'products_planets', 'name': 'planets'},
     ]
     context = {

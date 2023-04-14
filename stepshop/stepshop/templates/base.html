@@ -29,65 +29,39 @@
 <body>
 
 <!-- Pre Header -->
+<!-- Pre Header -->
 <div id="pre-header">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <span>{{user.username|title}}</span>
+            <div class="col-md-12 d-flex justify-content-end align-items-center text-light">
+                <span>
+                    {% if user.is_authenticated %}
+                       {{ user.username }}
+                       | <a href="{% url 'auth:logout' %}" class="text-light">Exit</a>
+                    {% else %}
+                       <a href="{% url 'auth:login' %}" class="text-light">Enter</a>
+                    {% endif %}
+                </span>
             </div>
         </div>
     </div>
 </div>
 
+
 <!-- Navigation -->
+ {% if user.is_authenticated %}
 {%include 'includes/inc_main_menu.html'%}
+  {% endif %}
 
 {% block content %}
 {% endblock %}
 
 
-<!-- Subscribe Form Starts Here -->
-<div class="subscribe-form">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="section-heading">
-                    <div class="line-dec"></div>
-                    <h1>Subscribe on PIXIE now!</h1>
-                </div>
-            </div>
-            <div class="col-md-8 offset-md-2">
-                <div class="main-content">
-                    <p>Integer vel turpis ultricies, lacinia ligula id, lobortis augue. Vivamus porttitor dui id dictum
-                        efficitur. Phasellus vel interdum elit.</p>
-                    <div class="container">
-                        <form id="subscribe" action="" method="get">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <fieldset>
-                                        <input name="email" type="text" class="form-control" id="email"
-                                               onfocus="if(this.value == 'Your Email...') { this.value = ''; }"
-                                               onBlur="if(this.value == '') { this.value = 'Your Email...';}"
-                                               value="Your Email..." required="">
-                                    </fieldset>
-                                </div>
-                                <div class="col-md-5">
-                                    <fieldset>
-                                        <button type="submit" id="form-submit" class="button">Subscribe Now!</button>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Subscribe Form Ends Here -->
+
 
 
 <!-- Footer Starts Here -->
+ {% if user.is_authenticated %}
 <div class="footer">
     <div class="container">
         <div class="row">
@@ -136,7 +110,7 @@
     </div>
 </div>
 <!-- Sub Footer Ends Here -->
-
+  {% endif %}
 
 <!-- Bootstrap core JavaScript -->
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
@@ -148,6 +122,8 @@
 <script src="{% static 'assets/js/owl.js' %}"></script>
 <script src="{% static 'assets/js/isotope.js' %}"></script>
 <script src="{% static 'assets/js/flex-slider.js' %}"></script>
+
+{%block js%} {% endblock %}
 
 
 <script language="text/Javascript">

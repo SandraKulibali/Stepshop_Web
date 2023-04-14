@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
+    'authapp',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'stepshop.urls'
+AUTH_USER_MODEL = 'authapp.ShopUser'
 
 TEMPLATES = [
     {
@@ -121,7 +123,6 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'stepshop', 'static'),
-    os.path.join(BASE_DIR, 'mainapp', 'static'),
 )
 
 MEDIA_URL = '/media/'

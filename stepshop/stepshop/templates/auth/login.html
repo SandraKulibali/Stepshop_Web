@@ -8,14 +8,14 @@
     <div class="form-row">
         <div class="mx-auto col-3 d-grid align-items-end text-center">
             <form action="{% url 'auth:login' %}" method="post" class="form-horizontal">
-                  <br>
+                <br>
                 {% csrf_token %}
                 {% for item in login_form %}
                 <div class="mx-auto ">
                     {{ item }}
-                     {% if item.help_text %}
+                    {% if item.help_text %}
                     {{ item.help_text|safe }}
-                {% endif %}
+                    {% endif %}
                 </div>
 
                 <br>

@@ -49,19 +49,16 @@
 
 
 <!-- Navigation -->
- {% if user.is_authenticated %}
+{% if user.is_authenticated %}
 {%include 'includes/inc_main_menu.html'%}
-  {% endif %}
+{% endif %}
 
 {% block content %}
 {% endblock %}
 
 
-
-
-
 <!-- Footer Starts Here -->
- {% if user.is_authenticated %}
+{% if user.is_authenticated %}
 <div class="footer">
     <div class="container">
         <div class="row">
@@ -110,7 +107,7 @@
     </div>
 </div>
 <!-- Sub Footer Ends Here -->
-  {% endif %}
+{% endif %}
 
 <!-- Bootstrap core JavaScript -->
 <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
@@ -135,6 +132,7 @@
           t.style.color='#fff';
           }
       }
+
 
 
 </script>

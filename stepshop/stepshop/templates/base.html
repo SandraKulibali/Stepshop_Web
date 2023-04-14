@@ -33,7 +33,7 @@
 <div id="pre-header">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 d-flex justify-content-end align-items-center text-light">
+            <div class="col-md-12 d-flex justify-content-center align-items-center text-light">
                 <span>
                     {% if user.is_authenticated %}
                        {{ user.username }}
@@ -62,11 +62,6 @@
 <div class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <div class="logo">
-                    <img src="{% static 'assets/images/header-logo.png' %}" alt="">
-                </div>
-            </div>
             <div class="col-md-12">
                 <div class="footer-menu">
                     <ul>

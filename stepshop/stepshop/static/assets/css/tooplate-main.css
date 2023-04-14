@@ -80,11 +80,7 @@ a {
 	border-bottom: 1px solid #eee;
 }
 #navbarResponsive {
-	z-index: 999;
-	position: absolute;
-	left: 50%;
-	top: 105px;
-	transform: translateX(-50%);
+    justify-content: center;
 }
 .navbar-dark .navbar-nav .nav-item {
 	margin: 0px 15px;
@@ -104,7 +100,7 @@ a {
 	color: #3a8bcd;
 }
 .navbar:after {
-	width: 100%;
+
 	height: 1px;
 	background-color: #eee;
 	content: '';
@@ -130,7 +126,7 @@ a {
 }
 /* Banner Style */
 .banner {
-	margin-top: 50px;
+
 	background-image: url(../images/banner-bg.jpg);
 	background-size: cover;
 	background-repeat: no-repeat;

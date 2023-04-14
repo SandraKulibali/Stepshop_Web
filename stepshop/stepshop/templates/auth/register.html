@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}
 {{ title|capfirst }}
 {% endblock %}
-{%block content%}
+
+{% block content %}
 <div class="container">
-    <div class="form-row">
+    <h1 class=" text-center">{{ title|capfirst }}</h1>
+
+    <div class="row">
         <div class="mx-auto col-3 d-grid align-items-end text-center">
-            <form action="{% url 'auth:login' %}" method="post" class="form-horizontal">
-                <br>
+            <form action="{% url 'auth:register' %}" class="form-horizontal" method="post"
+                  enctype="multipart/form-data">
                 {% csrf_token %}
-                {% for item in login_form %}
+<br>
+                {% for item in register_form %}
                 <div class="mx-auto ">
                     {{ item }}
                     {% if item.help_text %}
@@ -19,15 +24,14 @@
                 </div>
 
                 <br>
-                {% endfor %}
+{% endfor %}
 
-                <button type="submit" class="btn btn-primary col-8">Log In</button>
             </form>
-             <br>
-                <button class="btn btn-round btn-primary col-8">
-                    <a href="{% url 'auth:register' %}" class="text-light">Sign In</a>
+            <button class="btn btn-primary col-8" type="submit">
+                        Sign In
                 </button>
         </div>
     </div>
+
 </div>
 {% endblock %}

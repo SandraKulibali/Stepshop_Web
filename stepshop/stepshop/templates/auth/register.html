@@ -14,7 +14,7 @@
             <form action="{% url 'auth:register' %}" class="form-horizontal" method="post"
                   enctype="multipart/form-data">
                 {% csrf_token %}
-<br>
+                <br>
                 {% for item in register_form %}
                 <div class="mx-auto ">
                     {{ item }}
@@ -24,12 +24,12 @@
                 </div>
 
                 <br>
-{% endfor %}
+                {% endfor %}
 
             </form>
             <button class="btn btn-primary col-8" type="submit">
-                        Sign In
-                </button>
+                Sign In
+            </button>
         </div>
     </div>
 

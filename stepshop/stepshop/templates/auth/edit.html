@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title|capfirst }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">{{ title|capfirst }}</h1>
+
+    <div class="row">
+        <div class="mx-auto col-4">
+            {% if user.avatar %}
+            <div>
+                <img src="{{ user.avatar.url }}" alt="{{ user.username }}"
+                     class="rounded-circle user_avatar">
+            </div>
+            {% endif %}
+
+
+            <form action="{% url 'auth:edit' %}" class="form-horizontal" method="post"
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <p class="col-12">
+                    <label for="login">Login:</label>
+                    {{ edit_form.username }}
+                </p>
+                <p class="col-12">
+                    <label>Name:
+                        {{ edit_form.first_name }}</label>
+                </p>
+                <p class="col-12">
+                    <label>Email:
+                        {{ edit_form.email }}</label>
+                </p>
+                <p class="col-12">
+                    <label>Age:
+                        {{ edit_form.age }}</label>
+                </p>
+                <p class="col-12">
+                    <label>Avatar:
+                        {{ edit_form.avatar }}</label>
+                </p>
+                <br>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+            <br>
+            <button class="btn btn-primary">
+                <a href="{% url 'index' %}" class="text-light">To Main Page</a>
+            </button>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

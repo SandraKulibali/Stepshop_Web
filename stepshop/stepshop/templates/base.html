@@ -28,20 +28,31 @@
 
 <body>
 
-<!-- Pre Header -->
+
 <!-- Pre Header -->
 <div id="pre-header">
     <div class="container">
         <div class="row">
             <div class="col-md-12 d-flex justify-content-center align-items-center text-light">
-                <span>
-                    {% if user.is_authenticated %}
-                       {{ user.username }}
-                       | <a href="{% url 'auth:logout' %}" class="text-light">Exit</a>
-                    {% else %}
-                       <a href="{% url 'auth:login' %}" class="text-light">Enter</a>
-                    {% endif %}
-                </span>
+                {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                <a href="/admin/" class="nav-link">
+                    <span>Admin</span>
+                </a>
+                |
+                {% endif %}
+                <a href="{% url 'auth:edit' %}" class="nav-link">
+                    <span>{{ user.first_name|default:'User' }}</span>
+                </a>
+                |
+                <a href="{% url 'auth:logout' %}" class="nav-link">
+                    <span>Exit</span>
+                </a>
+                {% else %}
+                <a href="{% url 'auth:login' %}" class="nav-link">
+                    <span>Enter</span>
+                </a>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -59,35 +70,6 @@
 
 <!-- Footer Starts Here -->
 {% if user.is_authenticated %}
-<div class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="footer-menu">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">How It Works ?</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="social-icons">
-                    <ul>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Footer Ends Here -->
-
 
 <!-- Sub Footer Starts Here -->
 <div class="sub-footer">
@@ -129,9 +111,7 @@
       }
 
 
-
 </script>
-
 
 </body>
 

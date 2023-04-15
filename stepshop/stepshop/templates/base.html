@@ -34,7 +34,7 @@
 <div id="pre-header">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 d-flex justify-content- align-items-center text-light">
+            <div class="col-md-12 d-flex justify-content-end align-items-center text-light">
                 {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                 <a href="/admin/" class="nav-link">
@@ -56,10 +56,11 @@
                 {% endif %}
 
                 {% if basket %}
-              <a href="{#% url 'basket:view %#}" class="basket">
-                <span>{{ basket|length }}</span>
-              </a>
-            {% endif %}
+                <a href="{% url 'basket:view' %}" class="basket mr-2">
+                    <span>{{ basket.0.total_quantity }}</span>
+                </a>
+                <span>${{ basket.0.total_cost|floatformat:"g" }}</span>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -77,14 +78,14 @@
 
 <!-- Footer Starts Here -->
 
-  {% if user.is_authenticated %}
+{% if user.is_authenticated %}
 <!-- Sub Footer Starts Here -->
 <div class="sub-footer">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="copyright-text">
-                    <p>Copyright &copy; 2019 - {% now "Y" %} ItStep, Inc</p>
+                    <p class="">Copyright &copy; 2019 - {% now "Y" %} ItStep, Inc</p>
                 </div>
             </div>
         </div>
@@ -116,6 +117,7 @@
           t.style.color='#fff';
           }
       }
+
 
 
 </script>

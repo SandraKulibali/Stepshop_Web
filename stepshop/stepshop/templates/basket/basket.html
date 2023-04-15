@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}{{ title|title }}{% endblock %}
@@ -9,23 +9,28 @@
         <div class="container w-50 mt-5 mb-3">
             <div class="row basket_list">
                 <table class="table mt-3">
-                    <thead class="thead-light">
-                    <tr class="table-light">
+                    <thead>
+                    <tr>
                         <th class="col-1">№</th>
-                        <th class="col text-center">Product</th>
-                        <th class="col text-center">Quantity</th>
-                        <th class="col text-center">Price</th>
-                        <th class="col text-center">Remove</th>
+                        <th class="col">Product</th>
+                        <th class="col">Quantity</th>
+                        <th class="col">Price</th>
+                        <th class="col">Remove</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for item in basket %}
-                    <tr class="table-light">
+                    <tr>
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>{{ item.product|capfirst }}</td>
-                        <td class=" text-center">{{ item.quantity }}</td>
-                        <td class=" text-center">{{ item.product_cost }}</td>
-                        <td >
+                        <td>
+                            <input type="number"
+                                   name="{{ item.pk }}"
+                                   min="0"
+                                   value="{{ item.quantity }}">
+                        </td>
+                        <td>{{ item.product_cost }}</td>
+                        <td>
                             <button class="btn btn-round">
                                 <a href="{% url 'basket:remove' item.pk %}">Remove</a>
                             </button>
@@ -35,14 +40,21 @@
                     </tbody>
 
                 </table>
+
+                {% if basket %}
+                <div class="basket_summary">
+                    Total products: <strong>{{ basket.0.total_quantity }}</strong><br>
+                    Total price: <strong>${{ basket.0.total_cost|floatformat:"g" }}</strong>
+                </div>
+                {% endif %}
             </div>
 
-            <div class="basket_summary  text-center">
-                Total Products: <strong>{{ basket.0.total_quantity }}</strong><br>
-                Total Price: <strong>${{ basket.0.total_cost|floatformat:"g" }}</strong>
-            </div>
 
         </div>
 
     {% endif %}
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'assets/js/script.js' %}"></script>
 {% endblock %}

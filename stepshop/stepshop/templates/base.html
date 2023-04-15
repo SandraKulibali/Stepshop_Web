@@ -55,13 +55,14 @@
                 </a>
                 {% endif %}
 
-
                 {% if basket %}
+
                 <a href="{% url 'basket:view' %}" class="basket mr-2">
                     <span>{{ basket.0.total_quantity }}</span>
                 </a>
                 <span>${{ basket.0.total_cost|floatformat:"g" }}</span>
-               {% endif %}
+
+                 {% endif %}
             </div>
         </div>
     </div>
@@ -106,7 +107,7 @@
 <script src="{% static 'assets/js/isotope.js' %}"></script>
 <script src="{% static 'assets/js/flex-slider.js' %}"></script>
 
-{%block js%} {% endblock %}
+
 
 
 <script language="text/Javascript">
@@ -122,6 +123,8 @@
 
 
 </script>
+{% block js %}
+{% endblock %}
 
 </body>
 

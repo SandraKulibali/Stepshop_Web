@@ -64,7 +64,7 @@ def product(request, pk):
 
     product_item = get_object_or_404(Product, pk=pk)
     category = product_item.category
-
+    basket = get_basket(request.user)
     same_products = get_same_products(product_item)  # [:10]
 
     context = {
@@ -73,6 +73,7 @@ def product(request, pk):
         'product': product_item,
         'category': category,
         'same_products': same_products,
+        'basket': basket,
     }
 
     return render(request, 'product.html', context)

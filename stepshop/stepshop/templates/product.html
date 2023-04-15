@@ -32,7 +32,7 @@
               <div>Items left: <span>{{ product.quantity }}</span></div>
 
               <div class="btn main-button p-0">
-                <a href="{% url 'basket:add' product.pk %}">Order</a>
+                <a href="{% if user.is_authenticated %}{% url 'basket:add' product.pk %} {%endif%}">Order</a>
               </div>
 
               <div class="down-content">
@@ -55,7 +55,7 @@
           <div class="col-md-12">
             <div class="section-heading">
               <div class="line-dec"></div>
-              <h1>Похожие продукты</h1>
+              <h1>Same Products</h1>
             </div>
           </div>
           <div class="col-md-12">

@@ -10,6 +10,9 @@
             <form action="{% url 'auth:login' %}" method="post" class="form-horizontal">
                 <br>
                 {% csrf_token %}
+                {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+                {% endif %}
                 <div>{{ login_form.username}}
                  {% if login_form.username.help_text %}
                     {{ item.help_text|safe }}

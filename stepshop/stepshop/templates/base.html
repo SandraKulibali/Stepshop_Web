@@ -43,7 +43,7 @@
                 |
                 {% endif %}
                 <a href="{% url 'auth:edit' %}" class="nav-link">
-                    <span>{{ user.first_name|default:'User' }}</span>
+                    <span>{{ user.first_name|capfirst|default:'User' }}</span>
                 </a>
                 |
                 <a href="{% url 'auth:logout' %}" class="nav-link">
@@ -55,12 +55,13 @@
                 </a>
                 {% endif %}
 
+
                 {% if basket %}
                 <a href="{% url 'basket:view' %}" class="basket mr-2">
                     <span>{{ basket.0.total_quantity }}</span>
                 </a>
                 <span>${{ basket.0.total_cost|floatformat:"g" }}</span>
-                {% endif %}
+               {% endif %}
             </div>
         </div>
     </div>

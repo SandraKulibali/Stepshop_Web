@@ -9,12 +9,27 @@
             </div>
             <div class="col-md-8 col-sm-12">
                 <div id="filters" class="button-group">
-                    <button class="btn btn-primary {% if not pk%} active {% endif %}" data-filter="{% url 'products:index'%}">
-                        All
+                    <button class="btn btn-primary" data-filter="*">
+                        <a class="{% if request.resolver_match.kwargs.pk == 0 %}
+                                    active
+                                  {% elif request.resolver_match.kwargs.pk == None %}
+                                    active
+                                  {% endif %}
+                                 " href="{% url 'products:category' 0 %}">
+                            All
+                        </a>
                     </button>
                     {% for category in categories %}
-                    <button class="btn btn-primary {% if pk == category.pk %} active {% endif %}" data-filter="{{category.href}}">
-                        {{category.name|capfirst}}</button>
+                        <button class="btn btn-primary"
+                                data-filter="{{ category.name }}">
+                            <a href="{% url 'products:category' category.pk %}"
+                               class="{% if request.resolver_match.kwargs.pk == category.pk %}
+                                         active
+                                      {% endif %}
+                            ">
+                                {{ category.name|capfirst }}
+                            </a>
+                        </button>
                     {% endfor %}
                 </div>
             </div>

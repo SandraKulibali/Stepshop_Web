@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/tooplate-main.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <!--
     Tooplate 2114 Pixie
     https://www.tooplate.com/view/2114-pixie
@@ -33,7 +34,7 @@
 <div id="pre-header">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 d-flex justify-content-center align-items-center text-light">
+            <div class="col-md-12 d-flex justify-content- align-items-center text-light">
                 {% if user.is_authenticated %}
                 {% if user.is_superuser %}
                 <a href="/admin/" class="nav-link">
@@ -53,6 +54,12 @@
                     <span>Enter</span>
                 </a>
                 {% endif %}
+
+                {% if basket %}
+              <a href="{#% url 'basket:view %#}" class="basket">
+                <span>{{ basket|length }}</span>
+              </a>
+            {% endif %}
             </div>
         </div>
     </div>
@@ -60,17 +67,17 @@
 
 
 <!-- Navigation -->
-{% if user.is_authenticated %}
+
 {%include 'includes/inc_main_menu.html'%}
-{% endif %}
+
 
 {% block content %}
 {% endblock %}
 
 
 <!-- Footer Starts Here -->
-{% if user.is_authenticated %}
 
+  {% if user.is_authenticated %}
 <!-- Sub Footer Starts Here -->
 <div class="sub-footer">
     <div class="container">

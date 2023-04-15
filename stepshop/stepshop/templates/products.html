@@ -4,37 +4,19 @@
 
 <!-- Page Content -->
 <!-- Items Starts Here -->
-<div class="featured-page">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <div class="section-heading">
-                    <div class="line-dec"></div>
-                    <h1>Featured Items</h1>
-                </div>
-            </div>
-            <div class="col-md-8 col-sm-12">
-                <div id="filters" class="button-group">
-                    {% for item in links_menu %}
-                    <button class="btn btn-primary" data-filter="{{item.href}}">{{item.name}}</button>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+ {% include 'includes/inc_category_menu.html' %}
 
 <div class="featured container no-gutter">
     <div class="row posts">
         {% for product in products %}
         <div id="{{ product.id }}" class="item new col-md-4">
-            <a href="single-product.html">
+            <a href="{% url 'products:product' product.pk %}">
                 <div class="featured-item">
                     <img src="{% if product.image %}
                               {{ product.image.url }}
                             {% endif %}"
                          alt="{{ product.name }}">
-                    <h4>{{ product.name }}</h4>
+                    <h4>{{ product.name|capfirst }}</h4>
                     <h6>${{ product.price }}</h6>
                 </div>
             </a>

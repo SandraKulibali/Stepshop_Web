@@ -10,17 +10,18 @@
             <form action="{% url 'auth:login' %}" method="post" class="form-horizontal">
                 <br>
                 {% csrf_token %}
-                {% for item in login_form %}
-                <div class="mx-auto ">
-                    {{ item }}
-                    {% if item.help_text %}
+                <div>{{ login_form.username}}
+                 {% if login_form.username.help_text %}
                     {{ item.help_text|safe }}
                     {% endif %}
                 </div>
-
                 <br>
-                {% endfor %}
-
+                <div>{{ login_form.password}}
+                 {% if login_form.password.help_text %}
+                    {{ password.help_text|safe }}
+                    {% endif %}
+                </div>
+                <br>
                 <button type="submit" class="btn btn-primary col-8">Log In</button>
             </form>
             <br>

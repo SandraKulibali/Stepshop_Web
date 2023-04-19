@@ -37,7 +37,7 @@
             <div class="col-md-12 d-flex justify-content-end align-items-center text-light">
                 {% if user.is_authenticated %}
                 {% if user.is_superuser %}
-                <a href="/admin/" class="nav-link">
+                <a href="{% url 'admin_staff:users' %}" class="nav-link">
                     <span>Admin</span>
                 </a>
                 |

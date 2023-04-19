@@ -1,0 +1,39 @@
+{% extends 'admin_staff/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="mx-auto col-4 d-grid align-items-end text-center">
+  <form action="{% url 'admin_staff:category_create' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div >
+       <label class="text-center">Name:
+       {{ category_form.name }}
+       </label>
+    </div>
+
+     <div >
+       <label class="text-center">Description:
+        {{ category_form.description }}
+       </label>
+    </div>
+
+
+         <div>
+           <label class="text-center">Is Active:
+             {{ category_form.is_active}}
+
+           </label>
+
+         </div>
+
+
+
+
+
+
+<br>
+    <br>
+    <input type="submit" class="form-control col-4" value="Create">
+  </form>
+</div>
+{% endblock %}

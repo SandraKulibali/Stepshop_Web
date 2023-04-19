@@ -25,6 +25,9 @@ class Basket(models.Model):
         verbose_name='time',
         auto_now_add=True,
     )
+    is_active = models.BooleanField(
+        default=True
+    )
 
     @property
     def product_cost(self):

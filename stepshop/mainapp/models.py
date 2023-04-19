@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+
 class ProductCategory(models.Model):
     name = models.CharField(
         verbose_name='name',
@@ -10,6 +12,9 @@ class ProductCategory(models.Model):
     description = models.TextField(
         verbose_name="description",
         blank=True,
+    )
+    is_active = models.BooleanField(
+        default=True
     )
 
     def __str__(self):
@@ -59,6 +64,9 @@ class Product(models.Model):
     )
     updated_at = models.DateTimeField(
         auto_now=True
+    )
+    is_active = models.BooleanField(
+        default=True
     )
 
     def __str__(self):

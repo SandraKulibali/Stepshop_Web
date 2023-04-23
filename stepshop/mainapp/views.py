@@ -1,6 +1,8 @@
 from random import sample
 
+from django.core.paginator import Paginator, EmptyPage
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView
 
 from basketapp.models import Basket
 from mainapp.models import Product, ProductCategory
@@ -30,33 +32,30 @@ def get_same_products(product):
     return same_products
 
 
-def products(request, pk=None):
-    title = "products"
+class ProductListView(ListView):
+    model = Product
+    template_name = 'products.html'
+    context_object_name = 'products'
+    paginate_by = 7
 
-    products = Product.objects.all().order_by('-price')  # [:2]
-    categories = ProductCategory.objects.all()
-
-    basket = get_basket(request.user)
-
-    context = {
-        'title': title,
-        'products': products,
-        'categories': categories,
-        'links_menu': links_menu,
-        'basket': basket,
-    }
-
-    if pk is not None:
-        if pk == 0:
-            products_ = Product.objects.all()
-            category = {'name': 'All'}
+    def get_queryset(self):
+        pk = self.kwargs.get('pk')
+        if pk is not None:
+            if pk == 0:
+                products = Product.objects.all()
+            else:
+                category = get_object_or_404(ProductCategory, pk=pk)
+                products = Product.objects.filter(category__pk=pk)
         else:
-            category = get_object_or_404(ProductCategory, pk=pk)
-            products_ = Product.objects.filter(category__pk=pk)
+            products = Product.objects.all().order_by('-price')
+        return products
 
-        context.update({'products': products_, 'category': category})
-
-    return render(request, 'products.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'products'
+        context['categories'] = ProductCategory.objects.all()
+        context['basket'] = get_basket(self.request.user)
+        return context
 
 
 def product(request, pk):

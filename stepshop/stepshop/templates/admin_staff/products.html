@@ -43,7 +43,7 @@
                     </tfoot>
                     <tbody>
                     {% for object in products_list %}
-                    <tr class="text-center">
+                    <tr class="text-center" {% if not object.is_active %} style="opacity: 0.5;" {% endif %}>
                         <td><img src="/media/{{object.image|default:'product_images/andromeda.jpg'}}"
                                  alt="{{ object.name }}" style="width:50px;">
                         </td>
@@ -71,7 +71,7 @@
                         </td>
                         <td>
 
-                            <a href="{% url 'admin_staff:product_delete' object.pk %}">
+                            <a {% if not category.is_active %} class="invisible" {% endif %} href="{% url 'admin_staff:product_delete' object.pk %}">
                                 <i class="fa fa-times-circle"></i>
                             </a>
 

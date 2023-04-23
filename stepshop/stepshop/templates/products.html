@@ -9,6 +9,7 @@
 
 <div class="featured container no-gutter">
     <div class="row posts">
+
         {% for product in products %}
         <div id="{{ product.id }}" class="item new col-md-4">
             <a href="{% url 'products:product' product.pk %}">
@@ -23,23 +24,39 @@
             </a>
         </div>
         {% endfor %}
-    </div>
-</div>
 
-<div class="page-navigation">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <ul>
-                    <li class="current-page"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                </ul>
-            </div>
-        </div>
     </div>
+    {% if page_obj.paginator %}
+                    {% if page_obj.paginator.num_pages > 1 %}
+                    <ul class="pagination">
+                            <li class="page-item">
+
+                            {% if page_obj.has_previous %}
+                                <a class="page-link" href="?page=1">&laquo;1 </a>
+                            {% endif %}
+
+                             </li>
+                        <li class="page-item">
+                            {% if page_obj.has_previous %}
+
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}"> previous </a>
+
+                               {% endif %}
+                        </li>
+
+                        <li class="page-item">
+                            {% if page_obj.has_next %}
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}"> next </a>
+                            {% endif %}
+                        </li>
+                         <li class="page-item">
+                            {% if page_obj.has_next %}
+                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}"> {{ page_obj.paginator.num_pages }}&raquo;</a>
+                              {% endif %}
+                        </li>
+                    </ul>
+                    {% endif %}
+                    {% endif %}
 </div>
-<!-- Featured Page Ends Here -->
 
 {% endblock %}

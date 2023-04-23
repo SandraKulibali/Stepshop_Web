@@ -160,7 +160,7 @@ class ProductReadView(DetailView):
 
 class ProductUpdateView(UpdateView):
     model = Product
-    fields = ['name', 'category', 'short_desc',  'description', 'price', 'quantity', 'is_active']
+    fields = ['name', 'category', 'short_desc',  'description', 'price', 'quantity', 'image', 'is_active']
     template_name = 'admin_staff/product_update.html'
     context_object_name = 'product'
 

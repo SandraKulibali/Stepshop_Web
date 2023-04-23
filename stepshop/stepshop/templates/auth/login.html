@@ -5,9 +5,9 @@
 {% endblock %}
 {%block content%}
 <div class="container">
-    <div class="form-row">
+    <div class="form-row ">
         <div class="mx-auto col-3 d-grid align-items-end text-center">
-            <form action="{% url 'auth:login' %}" method="post" class="form-horizontal">
+            <form action="{% url 'auth:login' %}" method="post" class="form-horizontal mt-100">
                 <br>
                 {% csrf_token %}
                 {% if next %}

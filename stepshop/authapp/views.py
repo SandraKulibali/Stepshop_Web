@@ -1,8 +1,10 @@
 from django.contrib import auth
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
 from django.urls import reverse
+
+from authapp.models import ShopUser
 
 
 def login(request):
@@ -47,7 +49,7 @@ def register(request):
 
         if register_form.is_valid():
             register_form.save()
-            return HttpResponseRedirect(reverse('auth:login'))
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         register_form = ShopUserRegisterForm()
 
@@ -73,6 +75,7 @@ def edit(request):
 
     context = {
         'title': title,
+
         'edit_form': edit_form,
     }
 

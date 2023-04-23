@@ -1,0 +1,68 @@
+{% extends 'admin_staff/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title|capfirst }}
+{% endblock %}
+
+{% block content %}
+ <div class="row">
+        <div class="mx-auto col-8 d-grid align-items-end text-center">
+<div class="mx-auto col-4 d-grid align-items-end text-center">
+    <form action="{% url 'admin_staff:product_update' product.pk%}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+<!--           <div>-->
+<!--            <label class="text-center">Name:-->
+<!--                {{ product_form.category }}-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label class="text-center">Name:-->
+<!--                {{ product_form.name }}-->
+<!--            </label>-->
+<!--        </div>-->
+<!--      <div>-->
+<!--            <label class="text-center">Name:-->
+<!--                {{ product_form.image }}-->
+<!--            </label>-->
+<!--        </div>-->
+<!--      <div>-->
+<!--            <label class="text-center">Name:-->
+<!--                {{ product_form.short_desc }}-->
+<!--            </label>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--            <label class="text-center">Description:-->
+<!--                {{ product_form.description }}-->
+<!--            </label>-->
+<!--        </div>-->
+
+<!--      <div>-->
+<!--            <label class="text-center">Description:-->
+<!--                {{ product_form.price }}-->
+<!--            </label>-->
+<!--        </div>-->
+<!--      <div>-->
+<!--            <label class="text-center">Description:-->
+<!--                {{ product_form.quantity }}-->
+<!--            </label>-->
+<!--        </div>-->
+
+
+<!--         <div>-->
+<!--            <label class="text-center">Is Active:-->
+<!--                {{ product_form.is_active}}-->
+<!--            </label>-->
+<!--        </div>-->
+
+
+        <br>
+        <br>
+         <button class="btn btn-primary col-6" type="submit">Save</button>
+    </form>
+    </div>
+            </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title|capfirst }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">{{ title|capfirst }}</h1>
+
+    <div class="row">
+        <div class="mx-auto col-4 d-grid align-items-end text-center">
+            {% if user.avatar %}
+            <div>
+                <img src="{{ user.avatar.url }}" alt="{{ user.username }}"
+                     class="rounded-circle user_avatar">
+            </div>
+            {% endif %}
+
+
+            <form action="{% url 'admin_staff:user_update' user.pk %}" class="form-horizontal" method="post"
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+
+
+                    <label for="login">Login:</label>
+                    {{ edit_form.username }}
+
+
+                    <label>Name:
+                        {{ edit_form.first_name }}</label>
+
+                <p class="col-12">
+                    <label>Email:
+                        {{ edit_form.email }}</label>
+                </p>
+                <p class="col-12">
+                    <label>Age:
+                        {{ edit_form.age }}</label>
+                </p>
+                <p class="col-12">
+                    <label>Avatar:
+                        {{ edit_form.avatar }}</label>
+                </p>
+                <br>
+                <button class="btn btn-primary col-6" type="submit">Save</button>
+            </form>
+            <br>
+
+                <button class="btn btn-primary  col-6" onclick="history.back()">Back</button>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

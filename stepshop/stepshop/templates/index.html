@@ -9,23 +9,56 @@
 <!-- Banner Starts Here -->
 <div class="banner">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+<!--        <div class="row">-->
+<!--            <div class="col-md-4">-->
                 <div class="caption">
-                    <h2>Ecommerce HTML Template</h2>
-                    <div class="line-dec"></div>
-                    <p>Pixie HTML Template can be converted into your desired CMS theme. Total <strong>5 pages</strong>
-                        included. You can use this Bootstrap v4.1.3 layout for any CMS.
-                        <br><br>Please tell your friends about <a rel="nofollow"
-                                                                  href="https://www.facebook.com/tooplate/">Tooplate</a>
-                        free template site. Thank you. Photo credit goes to <a rel="nofollow"
-                                                                               href="https://www.pexels.com">Pexels
-                            website</a>.</p>
-                    <div class="main-button">
-                        <a href="#">Order Now!</a>
+                    <h2 class="text-center">Hot Galaxies For Sale!</h2>
+
+                    <p>Limited time offer! Get 20% off on all products this week only
+                        <br><br>The hottest-ever galaxies are waiting for you. Don't waste your time before shipping costs increase next week, and check 'em out
+                    <div id="CarouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="CarouselExampleCaptions" data-slide-to="0" class="active"></li>
+                            <li data-target="CarouselExampleCaptions" data-slide-to="1"></li>
+                            <li data-target="CarouselExampleCaptions" data-slide-to="2"></li>
+                            <li data-target="CarouselExampleCaptions" data-slide-to="3"></li>
+                            <li data-target="CarouselExampleCaptions" data-slide-to="4"></li>
+                        </ol>
+                        <div class="carousel-inner text-center">
+                            {% for product in products %}
+                            <div class="carousel-item {% if forloop.counter0 == 0%} active {% endif %}">
+                                <img src="{{ product.image.url }}" style="height: 200px" class="img-fluid d-block-50">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 class="animate_animated
+                                           {% if forloop.counter0 == 0 %}
+                                            animate_fadeInDown
+                                            {% endif %}
+                                            {% if forloop.revcounter == 1 %}
+                                            animate_slideInDown
+                                            {% endif %}
+                                            {% if forloop.revcounter == 2 %}
+                                            animate_zoomIn
+                                            {% endif %}
+                                            {% if forloop.revcounter == 3 %}
+                                            animate_slideInDown
+                                            {% endif %}
+                                             {% if forloop.revcounter == 4 %}
+                                            animate_zoomIn
+                                            {% endif %}">
+                                        {{product.name}}
+                                    </h5>
+                                    <h6 class="animate_animated animate_zoomIn">${{ product.price}}</h6>
+                                    <button class="btn btn-primary animate_animated animate_zoomIn">
+                                        <a class="text-light" href="{% url 'products:product' product.pk %}"> Check me out </a>
+                                    </button>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
-            </div>
+
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </div>

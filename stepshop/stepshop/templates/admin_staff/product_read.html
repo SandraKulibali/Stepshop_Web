@@ -1,0 +1,66 @@
+{% extends 'admin_staff/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="section-heading">
+                        <div class="line-dec"></div>
+                        <h1>{{ title|capfirst }}</h1>
+                    </div>
+<div class="single-product">
+    <div class="container-fluid">
+        <div class="card mb-14">
+            <div class="row">
+                <div class="col-md-12">
+
+                </div>
+                <div class="col-md-6">
+                    <div class="product-slider">
+                        <div id="slider" class="flexslider">
+
+                            <img src=" {{ product.image.url}}"
+                                 alt="{{ product.name }}"
+                                 title="{{ product.name }}"
+                                 class="img-fluid">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="right-content">
+                        <h4>Name: {{ product.name|capfirst }}</h4>
+                        <h4>Price: {{ product.price|floatformat:"2g" }}</h4>
+                        <h4> Short Description:{{ product.short_desc}}</h4>
+                        <h4 class="mt-20">Items left: <span>{{ product.quantity }}</span></h4>
+                        <p> Description:{{ product.description }}</p>
+
+
+                        <div class="mycard-footer">
+                            <button class="btn btn-success">
+                                <a class="text-white" href="{% url 'admin_staff:product_update' product.pk %}">
+                                    Edit
+                                </a>
+                            </button>
+
+
+                            <button class="btn btn-danger">
+                                <a class="text-white" href="{% url 'admin_staff:product_delete' product.pk %}">
+                                    Remove
+                                </a>
+                            </button>
+
+
+                            <button class="btn btn-primary">
+                                <a class="text-white" href="{% url 'admin_staff:products' product.category.pk %}">
+                                    Back
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Single Page Ends Here -->
+{% endblock %}
+

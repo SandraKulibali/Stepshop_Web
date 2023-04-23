@@ -3,92 +3,115 @@
 
 {% block content %}
 
-    <div class="container-fluid">
-        <h1 class="mt-4">Products
-            {% if category %}
-                :<span>{{ category.name }}</span>
-            {% endif %}
-        </h1>
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fa fa-table mr-1"></i>
-                <a href="{% url 'admin_staff:categories' %}">Categories</a>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Details</th>
-                            <th>Edit</th>
-                            <th>Remove</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Details</th>
-                            <th>Edit</th>
-                            <th>Remove</th>
-                        </tr>
-                        </tfoot>
-                        <tbody>
-                            {% for object in products_list %}
-                                <tr>
-                                <td><img src="/media/{{object.image|default:'product_images/andromeda.jpg'}}"
-                                  alt="{{ object.name }}" style="width:50px;">
-                                </td>
-                                <td>
-                                  {{ object.name|title }}
-                                </td>
-                                <td>
-                                  {{ object.short_desc|title }}
-                                </td>
-                                <td>{{ object.quantity }}</td>
-                                <td>{{ object.price }} руб</td>
-                                <td>
-                                  <button type="button" class="btn btn-primary">
-                                    <a class="text-white" href="{% url 'admin_staff:product_read' object.pk %}">
-                                      details
-                                    </a>
-                                  </button>
-                                </td>
-                                <td>
-                                  <button class="btn btn-warning">
-                                    <a class="text-dark" href="{% url 'admin_staff:product_update' object.pk %}">
-                                      edit
-                                    </a>
-                                  </button>
-                                    </td>
-                                <td>
-                                  <button class="btn btn-danger">
-                                    <a class="text-white" href="{% url 'admin_staff:product_delete' object.pk %}">
-                                      remove
-                                    </a>
-                                  </button>
-                                </td>
-                                </tr>
-                            {% endfor%}
-                        </tbody>
-                    </table>
+<div class="container-fluid">
+    <h1 class="mt-4">Products
+        {% if category %}
+        :<span>{{ category.name }}</span>
+        {% endif %}
+    </h1>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fa fa-table mr-1"></i>
+            <a href="{% url 'admin_staff:categories' %}">Categories</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr class="text-center">
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Details</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr class="text-center">
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Details</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for object in products_list %}
+                    <tr class="text-center">
+                        <td><img src="/media/{{object.image|default:'product_images/andromeda.jpg'}}"
+                                 alt="{{ object.name }}" style="width:50px;">
+                        </td>
+                        <td>
+                            {{ object.name|title }}
+                        </td>
+                        <td>
+                            {{ object.short_desc|title }}
+                        </td>
+                        <td>{{ object.quantity }}</td>
+                        <td>{{ object.price }} USD</td>
+                        <td class="text-center">
 
-            <div class="card-footer">
-                <button class="btn btn-success">
-                  <a class="text-white" href="{% url 'admin_staff:product_create' category.pk %}">
-                    new product
-                  </a>
+                            <a href="{% url 'admin_staff:product_read' object.pk %}">
+                                <i class="fa fa-info-circle "> </i>
+                            </a>
+
+                        </td>
+                        <td>
+
+                            <a href="{% url 'admin_staff:product_update' object.pk %}">
+                                <i class="fa fa-edit"> </i>
+                            </a>
+
+                        </td>
+                        <td>
+
+                            <a href="{% url 'admin_staff:product_delete' object.pk %}">
+                                <i class="fa fa-times-circle"></i>
+                            </a>
+
+                        </td>
+                    </tr>
+                    {% endfor%}
+                    </tbody>
+                </table>
+
+
+                <button class="btn btn-success ml-0">
+                    <a class="text-white" href="{% url 'admin_staff:product_create' category.pk %}">
+                        Create new product
+                    </a>
+
                 </button>
-            </div>
 
-  </div>
+                {% if page_obj.paginator %}
+                {% if page_obj.paginator.num_pages > 1 %}
+                <div class="pagination">
+                        <span class="step-links">
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo;</a>
+                                <a href="?page={{ page_obj.previous_page_number }}">previous </a>
+                            {% endif %}
+                        </span>
+
+                    <span class="step-links m-2">
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}"> next</a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+                            {% endif %}
+                        </span>
+                </div>
+                {% endif %}
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

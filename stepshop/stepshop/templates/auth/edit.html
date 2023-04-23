@@ -19,7 +19,7 @@
             {% endif %}
 
 
-            <form action="{% url 'auth:edit' %}" class="form-horizontal" method="post"
+            <form action="{% url 'auth:edit'%}" class="form-horizontal" method="post"
                   enctype="multipart/form-data">
                 {% csrf_token %}
 
@@ -47,9 +47,9 @@
                 <button class="btn btn-primary col-6" type="submit">Save</button>
             </form>
             <br>
-            <button class="btn btn-primary  col-6">
-                <a href="{% url 'index' %}" class="text-light">To Main Page</a>
-            </button>
+
+                <button class="btn btn-primary  col-6" onclick="history.back()">Back</button>
+
 
         </div>
     </div>

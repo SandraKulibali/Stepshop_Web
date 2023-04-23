@@ -14,23 +14,17 @@
                 <input type="hidden" name="next" value="{{ next }}">
                 {% endif %}
                 <div>{{ login_form.username}}
-                 {% if login_form.username.help_text %}
-                    {{ item.help_text|safe }}
-                    {% endif %}
+
                 </div>
                 <br>
                 <div>{{ login_form.password}}
-                 {% if login_form.password.help_text %}
-                    {{ password.help_text|safe }}
-                    {% endif %}
+
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary col-8">Log In</button>
+                <button type="submit" class="btn btn-primary col-6">Log In</button>
             </form>
             <br>
-            <button class="btn btn-round btn-primary col-8">
-                <a href="{% url 'auth:register' %}" class="text-light">Sign In</a>
-            </button>
+            <input class="btn btn-primary col-6" type="button" value="Sign In" onclick="location.href='{% url 'auth:register' %}'"/>
         </div>
     </div>
 </div>

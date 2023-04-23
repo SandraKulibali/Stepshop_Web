@@ -1,0 +1,14 @@
+{% extends 'admin_staff/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="mx-auto col-4 d-grid align-items-end text-center">
+    <form action="{% url 'admin_staff:product_create' category.pk %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+       {{form.as_p}}
+        <br>
+        <br>
+        <button class="btn btn-primary col-6" type="submit">Create</button>
+    </form>
+</div>
+{% endblock %}

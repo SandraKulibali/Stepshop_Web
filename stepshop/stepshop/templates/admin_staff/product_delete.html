@@ -1,0 +1,23 @@
+{% extends 'admin_staff/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="row text-center">
+    <p> You sure you want to delete - {{ product.name }} ?</p>
+        <form class="form-horizontal" action="{% url 'admin_staff:product_delete' product.pk %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <input class="btn btn-danger m-3 col-2" type="submit" value="Delete">
+        </form>
+
+            <a href="{% url 'admin_staff:products' %}">
+                <button class="btn btn-round btn-success col-2">
+                Cancel
+                </button>
+            </a>
+
+    </div>
+    </div>
+{% endblock %}

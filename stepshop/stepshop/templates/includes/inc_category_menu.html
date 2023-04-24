@@ -16,20 +16,20 @@
                                     active
                                   {% endif %}
                                  " href="{% url 'products:category' 0 %}">
-                            All
+                            All {{current.pk}}
                         </a>
                     </button>
                     {% for category in categories %}
-                        <button class="btn btn-primary"
-                                data-filter="{{ category.name }}">
-                            <a href="{% url 'products:category' category.pk %}"
-                               class="{% if request.resolver_match.kwargs.pk == category.pk %}
+                    <button class="btn btn-primary"
+                            data-filter="{{ category.name }}">
+                        <a href="{% url 'products:category' category.pk %}"
+                           class="{% if request.resolver_match.kwargs.pk == category.pk %}
                                          active
                                       {% endif %}
                             ">
-                                {{ category.name|capfirst }}
-                            </a>
-                        </button>
+                            {{ category.name|capfirst }}
+                        </a>
+                    </button>
                     {% endfor %}
                 </div>
             </div>

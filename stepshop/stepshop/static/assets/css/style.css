@@ -15,6 +15,10 @@
     color: #3a8bcd;
 }
 
+#filters a.active {
+    color: #3a8bcd;
+}
+
 .user_avatar {
     width: 320px;
 }

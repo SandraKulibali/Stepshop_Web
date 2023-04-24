@@ -55,6 +55,7 @@ class ProductListView(ListView):
         context['title'] = 'products'
         context['categories'] = ProductCategory.objects.all()
         context['basket'] = get_basket(self.request.user)
+        context['request'] = self.request
         return context
 
 
